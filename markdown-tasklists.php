@@ -25,6 +25,7 @@ class MarkdownTaskListsPlugin extends Plugin
         $markdown->addBlockType('-', 'List', false, true);
 
         $markdown->blockListComplete = function(array $Block) {
+            $checkbox_disabled = ( false === $this->config->get('plugins.markdown-tasklists.checkbox_disabled') ? '' : ' disabled' );
             if ($Block['pattern'] === '[*+-]') {
                 $containsTaskList = false;
                 foreach ($Block['element']['text'] as &$Item) {
@@ -35,7 +36,7 @@ class MarkdownTaskListsPlugin extends Plugin
                             $Item['attributes'] = ['class' => 'task-list-item'];
                             $Text = sprintf(
                                 '<input class="task-list-item-checkbox" type="checkbox" %s> %s',
-                                $prefix === '[x] ' ? 'checked disabled' : 'disabled',
+                                $prefix === '[x] ' ? 'checked'.$checkbox_disabled : $checkbox_disabled,
                                 substr(trim($Text), 4)
                             );
                         }
