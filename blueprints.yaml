@@ -23,3 +23,14 @@ form:
         0: Disabled
       validate:
         type: bool
+    checkbox_disabled:
+      type: toggle
+      label: Checkbox disabled
+      help: For check boxes to be clickable on the frontend disable this setting
+      highlight: 1
+      default: 1
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
